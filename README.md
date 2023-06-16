@@ -14,10 +14,13 @@ Pensamos em 2 casos para analisar:
 
 ### Primeiro caso:  
 Considerando essa lista como a conexão de primeiro grau  (amigos). Sendo assim, o segundo grau seria outro usuário que compartilhasse contas seguidas com com o primeiro (amigo do amigo).  
+<pre>
 Usuario1 ---1o grau---> ContaA <---2o grau--- Usuario2>   
-  
+</pre>
   
 ### No segundo caso:
 Consideramos esse campo de lista como ligação entre dois usuários, sendo assim, dois usuários que compartilhasse contas seguidas seriam amigos. E o amigo do amigo, seria um terceiro usuário que   compartilhasse contas seguidas com o segundo usuário.  
+<pre>
 Usuario 1 -----> ContaA <----- Usuario 2 -----> ContaB <----- Usuario 3  
    |-------------1o grau----------|-------------2o grau-----------|
+</pre>
