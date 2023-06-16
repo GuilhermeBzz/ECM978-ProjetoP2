@@ -31,16 +31,16 @@ Usuario 1 -----> ContaA <----- Usuario 2 -----> ContaB <----- Usuario 3
 # Exibição dos nós 
 ![Image 071](https://github.com/GuilhermeBzz/ECM978-ProjetoP2/assets/79452551/b39ab71b-4d25-4344-9317-713bdbe5ee22)
 
-# Exibição de recomendação a partir de um usuário (Utilizando segundo caso)
+### Exibição de recomendação a partir de um usuário (Utilizando segundo caso)
 ![Image 072](https://github.com/GuilhermeBzz/ECM978-ProjetoP2/assets/79452551/5837ef81-cd54-47ec-91f5-cdd058a31e41)
 
-# Exibição da recomendação e da força do relacionamento (Utilizando primeiro caso)
+### Exibição da recomendação e da força do relacionamento (Utilizando primeiro caso)
 ![Image 073](https://github.com/GuilhermeBzz/ECM978-ProjetoP2/assets/79452551/96058a9d-d510-4ca9-8891-ce9f63fa45fa)
 
-# Exibição da lista de recomendações (Utilizando o segundo caso)
+### Exibição da lista de recomendações (Utilizando o segundo caso)
 ![Image 074](https://github.com/GuilhermeBzz/ECM978-ProjetoP2/assets/79452551/6d147959-6740-489d-a92f-8f9548b58dc1)
 
-# Exibição os nós (Utilizando um número maior de dados)
+### Exibição os nós (Utilizando um número maior de dados)
 ![Image 075](https://github.com/GuilhermeBzz/ECM978-ProjetoP2/assets/79452551/e31749b7-3905-4c47-b3ef-e3f4b2a69822)
 No geral, não utilizamos esse número de dados pois causava muita lentidão para executar qualquer comando.
 
