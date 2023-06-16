@@ -28,7 +28,7 @@ Usuario 1 -----> ContaA <----- Usuario 2 -----> ContaB <----- Usuario 3
 </pre>
 
 ## O Projeto  
-# Exibição dos nós 
+### Exibição dos nós 
 ![Image 071](https://github.com/GuilhermeBzz/ECM978-ProjetoP2/assets/79452551/b39ab71b-4d25-4344-9317-713bdbe5ee22)
 
 ### Exibição de recomendação a partir de um usuário (Utilizando segundo caso)
