@@ -28,6 +28,8 @@ Usuario 1 -----> ContaA <----- Usuario 2 -----> ContaB <----- Usuario 3
 </pre>
 
 ## O Projeto  
+Os dados inicialmente foram tratados em python. O código se encontra no seguinte arquivo: [Tratamento-Twitter.ipynb](https://github.com/GuilhermeBzz/ECM978-ProjetoP2/blob/main/Tratamento-Twitter.ipynb).  
+Aqui seguem algumas imagens de comandos executados e suas respostas. A lista completa está no arquivo [Codigos-Neo4j.txt](https://github.com/GuilhermeBzz/ECM978-ProjetoP2/blob/main/Codigos-Neo4j.txt).
 ### Exibição dos nós 
 ![Image 071](https://github.com/GuilhermeBzz/ECM978-ProjetoP2/assets/79452551/b39ab71b-4d25-4344-9317-713bdbe5ee22)
 
