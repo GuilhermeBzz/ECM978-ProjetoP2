@@ -1,0 +1,86 @@
+--------- CÓDIGO PARA IMPORTAR O CSV E NOMEAR AS PROPRIEDADES ----------------------
+LOAD CSV WITH HEADERS FROM "file:///dados100.csv" AS twitter
+FIELDTERMINATOR ','
+CREATE (:User {id_user:twitter.id, username:twitter.screenName,
+hashtags:twitter.tags, follows: twitter.friends})
+
+LOAD CSV WITH HEADERS FROM "file:///dadosFollowers100.csv" AS followers
+FIELDTERMINATOR ','
+CREATE (:Follows {id_follower:followers.id_follower})
+-------------------------------------------------------------------------------------
+
+--------- CÓDIGO PARA ARRUMAR LISTA DE PESSOAS SEGUIDAS -----------------------------
+MATCH (u:User)
+WHERE u.follows IS NOT NULL
+SET u.follows = split(replace(replace(u.follows, '[', ''), ']', ''), ', ')
+
+MATCH (u:User)
+WHERE u.follows IS NOT NULL
+SET u.follows = [id IN u.follows | toInteger(replace(id, "'", ""))]
+-------------------------------------------------------------------------------------
+
+--------- CÓDIGO PARA CONVERTER O ID_USER EM NUMERO ---------------------------------
+MATCH (u:User)
+SET u.id_user = toInteger(u.id_user)
+RETURN u
+-------------------------------------------------------------------------------------
+
+--------- CÓDIGO PARA CRIAR AS RELAÇÕES ENTRE OS USUARIOS E PESSOAS SEGUIDAS --------
+MATCH (u:User)
+UNWIND u.follows AS follower_id
+MERGE (f:Follows {id_follower: follower_id})
+MERGE (u)-[:FOLLOWS]->(f)
+-------------------------------------------------------------------------------------
+
+--------- CÓDIGO PARA RECUPERAR UM USUARIO PELO NOME E POR UMA PESSOA SEGUIDA -------
+MATCH (u:User {username: "HRTgeek"})
+RETURN u
+
+MATCH (u:User)
+WHERE "20106852" IN u.follows
+RETURN u
+-------------------------------------------------------------------------------------
+
+--------- ITEM 1 DO PROJETO ---------------------------------------------------------
+--------- CÓDIGO PARA RECUPERAR TODAS AS RELAÇÕES USUÁRIO -> PESSOA SEGUIDA ---------
+MATCH (u)-[:FOLLOWS]->(f)
+RETURN u.id_user AS id_Usuário, u.username AS Nome_Usuário, 
+u.follows AS Pessoas_Seguidas, f.id_follower AS Pessoa_Seguida
+--------- REDE DE RELACIONAMENTOS ---------------------------------------------------
+MATCH (u)-[:FOLLOWS]->(f)
+RETURN *
+-------------------------------------------------------------------------------------
+
+---- CÓDIGO PARA RECUPERAR OS USUARIOS QUE SEGUEM UMA PESSOA SEGUIDA ESPECIFICADA ---
+MATCH (u)-[:FOLLOWS]->(f)
+WHERE f.id_follower = "15898172"
+RETURN u.id_user AS id_Usuário, u.username AS Nome_Usuário, 
+u.follows AS Pessoas_Seguidas, f.id_follower AS Pessoa_Seguida
+-------------------------------------------------------------------------------------
+
+---- ITENS 2 E 3 --------------------------------------------------------------------
+---- CÓDIGO PARA RECUPERAR A QTD DE PESSOAS EM COMUM SEGUIDAS POR TODAS -------------
+---- AS DUPLAS DE USUARIOS QUE POSSUEM ALGUM SEGUIDOR EM COMUM EM ORDEM -------------
+---- DECRESCENTE --------------------------------------------------------------------
+MATCH (u1:User), (u2:User)
+WHERE u1 <> u2 AND u1.id_user < u2.id_user
+MATCH (u1)-[:FOLLOWS]->(f:Follows)<-[:FOLLOWS]-(u2)
+RETURN u1.id_user AS id_usuario_1, u1.username AS Nome_Usuario_1, u2.id_user AS id_usuario_2, u2.username AS Nome_Usuario_2, COUNT(DISTINCT f.id_follower) AS quantidade_pessoas_em_comum
+ORDER BY COUNT(DISTINCT f.id_follower) DESC
+-------------------------------------------------------------------------------------
+
+---- CÓDIGO PARA RECUPERAR UM USUARIO 3 RECOMENDADO A UM USUARIO 1 POR MEIO ---------
+---- DE UM USUARIO 2 ----------------------------------------------------------------
+MATCH (u1:User)-[:FOLLOWS]->(:Follows)<-[:FOLLOWS]-(u2:User)-[:FOLLOWS]->(:Follows)<-[:FOLLOWS]-(u3:User)
+WHERE u1 <> u2 AND u2 <> u3 AND NOT (u1)-[:FOLLOWS]->(u3) AND u1.id_user < u3.id_user
+WITH DISTINCT u1, u2, u3
+RETURN u1.username AS Nome_Usuario_1, u2.username AS Recomendado_Por, u3.username AS Nome_Usuario_3
+-------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
