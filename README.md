@@ -9,6 +9,8 @@ Giovanni Brandini Blanco Benuthe - 19.00043-0
 Guilherme Bernardelli Zeigler    - 19.02453-3
 </pre>
 
+## Nosso Dataset
+([Link do dataset](https://www.kaggle.com/datasets/hwassner/TwitterFriends))
 No nosso dataset, dentre os dados de cada nó, temos um campo que contém a lista de contas que um usuário segue.  
 Pensamos em 2 casos para analisar:  
 
